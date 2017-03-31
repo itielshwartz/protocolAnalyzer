@@ -81,7 +81,9 @@ def create_person(committee, committee_date, full_name, peoples, position, probl
         problamtic_names.append(person)
 
 
-def handle_files(file_path="/**/*.csv", file_prefix="/committee_"):
+protocol_dir = os.path.dirname(os.path.abspath(__file__))+"/**/*.csv"
+
+def handle_files(file_path=None, file_prefix="/committee_"):
     '''
     The main function to start processing the files
     the function should be run (by default) with
@@ -135,7 +137,7 @@ def write_to_files(peoples, people_to_jobs_clean):
 
 
 def main_flow():
-    peoples, errors = handle_files()
+    peoples, errors = handle_files(file_path=protocol_dir)
     people_to_jobs_clean = analyze_jobs_per_person(peoples)
     write_to_files(peoples, people_to_jobs_clean)
 
